@@ -1,5 +1,15 @@
 {
-  "dependencies": {
-    "react-scripts": "^5.0.1"
+  "name": "LLM Log Extractor",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"npm:client\" \"npm:server\"",
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "install-all": "npm run install-client && npm run install-server",
+    "install-client": "cd client && npm install --force",
+    "install-server": "cd server && npm install --force"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

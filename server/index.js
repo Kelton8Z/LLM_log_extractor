@@ -20,12 +20,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../client/public')));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname+'../client/build/index.html'));
+  res.sendFile(path.resolve(__dirname+'../client/public/index.html'));
 });
 
 // handle file upload

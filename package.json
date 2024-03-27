@@ -7,9 +7,15 @@
     "server": "cd server && npm start",
     "install-all": "npm run install-client && npm run install-server",
     "install-client": "cd client && npm install --force",
-    "install-server": "cd server && npm install --force"
+    "install-server": "cd server && npm install --force",
+    "heroku-postbuild": "npm run install-all"
   },
-  "devDependencies": {
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "react-scripts": "^5.0.1",
+    "express": "^4.15.2",
     "concurrently": "^8.2.2"
   }
 }

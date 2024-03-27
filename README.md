@@ -50,6 +50,7 @@ If the user makes a new request, all previously indexed documents and informatio
   },
   "status": "done"
 }
+
 otherwise `processing` e.g.
 {
   "question": "What are our product design decisions?",

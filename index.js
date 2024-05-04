@@ -9,7 +9,7 @@ const port = 5000;
 
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:3000', 'https://infinite-ravine-65565-6b18fc609149.herokuapp.com/'];
+    const allowedOrigins = ['http://localhost:3000', 'https://log-summarizer-33883314d93f.herokuapp.com/'];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {

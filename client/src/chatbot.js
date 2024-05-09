@@ -3,20 +3,8 @@ import { Grid, TextField, Button, IconButton, InputAdornment } from '@mui/materi
 import SendIcon from '@mui/icons-material/Send';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import UploadFiles from './uploadButton';
-import { css, ThemeProvider } from '@emotion/react';
-
-// const theme = {
-//     spacing:
-
-// const useStyles = makeStyles (theme => ({
-//     root : {
-//         flexGrow: 1,
-//         padding: theme.spacing(2),
-//     },
-// }))
 
 const Chatbot = () => {
-//   const classes = useStyles();
   const [message, setMessage] = useState('');
   const [file, setFile] = useState(null);
 
@@ -24,9 +12,55 @@ const Chatbot = () => {
     setMessage(event.target.value);
   };
 
-  const handleSend = () => {
+  async function handleSend() {
     // Send message logic
     console.log('Sending message:', message);
+
+    const fetch = require('node-fetch'); // Only required if you're using Node.js
+
+    let data = JSON.stringify({
+    "messages": [
+        {
+        "content": "You are a helpful assistant",
+        "role": "system"
+        },
+        {
+        "content": message,
+        "role": "user"
+        }
+    ],
+    "model": "deepseek-coder",
+    "frequency_penalty": 0,
+    "max_tokens": 2048,
+    "presence_penalty": 0,
+    "stop": null,
+    "stream": false,
+    "temperature": 1,
+    "top_p": 1,
+    "logprobs": false,
+    "top_logprobs": null
+    });
+
+    let url = 'https://api.deepseek.com/chat/completions';
+    let headers = {
+        'Content-Type': 'application/json', 
+        'Accept': 'application/json', 
+        'Authorization': 'Bearer ' + process.env.API_KEY
+    };
+
+    fetch(url, {
+        method: 'POST', // Method type
+        headers: headers,
+        body: data // Data to be sent
+    })
+    .then((response) => response.json()) // Converting the response to JSON
+    .then((data) => {
+        console.log(JSON.stringify(data));
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
     setMessage('');
   };
 
